@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Project4.Core/Project4.Core.csproj" />
+    <Project Path="src/Project4.UI/Project4.UI.csproj" />
+    <Project Path="src/Project4/Project4.csproj" />
+  </Folder>
+</Solution>
