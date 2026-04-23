@@ -10,6 +10,8 @@ public static class PlaySoundTest
     }
     public static void DealWithSounds(string filePath)
     {
+        // Got the following code from NAudio's website example code to play audio...
+
         // Create the audio file reader (supports MP3, WAV, etc.)
         using (var audioFile = new AudioFileReader(filePath))
         // Create the output device (WaveOutEvent is preferred for non-GUI threads)

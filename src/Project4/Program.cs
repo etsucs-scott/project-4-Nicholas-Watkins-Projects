@@ -6,17 +6,17 @@ Saver saves = new Saver();
 ClipHandle clipHandler = new ClipHandle();
 
 
-SoundClip testClip = new SoundClip("..\\..\\..\\..\\..\\Audio\\cave21.mp3", 1.00, 6000);
-SoundClip testClip2 = new SoundClip("..\\..\\..\\..\\..\\Audio\\hamburger-sound-effect.mp3", .15, 6000);
-SoundClip testClip3 = new SoundClip("..\\..\\..\\..\\..\\Audio\\hell-naw-dog.mp3", 1.75, 6000);
-SoundClip testClip4 = new SoundClip("..\\..\\..\\..\\..\\Audio\\huh-cat-meme.mp3", .05, 100);
-SoundClip testClip5 = new SoundClip("..\\..\\..\\..\\..\\Audio\\darksouls.mp3", .15, 6000);
+SoundClip testClip = new SoundClip("cave", "..\\..\\..\\..\\..\\Audio\\cave21.mp3", 1.00, 6000);
+SoundClip testClip2 = new SoundClip("hamburger", "..\\..\\..\\..\\..\\Audio\\hamburger-sound-effect.mp3", .15, 6000);
+SoundClip testClip3 = new SoundClip("naw", "..\\..\\..\\..\\..\\Audio\\hell-naw-dog.mp3", 1.75, 6000);
+SoundClip testClip4 = new SoundClip("huh", "..\\..\\..\\..\\..\\Audio\\huh-cat-meme.mp3", .05, 100);
+SoundClip testClip5 = new SoundClip("darksouls", "..\\..\\..\\..\\..\\Audio\\darksouls.mp3", .15, 6000);
+
 
 List<SoundClip> soundClips = new List<SoundClip>() { testClip, testClip2, testClip3, testClip4, testClip5 };
-List<string> soundClipsName = new List<string>() { "cave", "hamburger", "naw", "huh", "darksouls" };
 
 for (int i = 0; i < soundClips.Count(); i++)
-    clipHandler.RunClip(soundClipsName[i], soundClips[i]);
+    clipHandler.RunClip(soundClips[i].name, soundClips[i]);
 
 
 while (true)
