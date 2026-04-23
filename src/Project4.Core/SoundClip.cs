@@ -13,6 +13,7 @@ namespace Project4.Core
     {
         private double defaultChance = 0;
         private Random randomPicker;
+        public string name = "";
         public string path { get; private set; } = "";
         public string time { get; private set; } = "";
         public int timesPlayed { get; private set; } = 0;
@@ -26,7 +27,7 @@ namespace Project4.Core
         /// <param name="path"></param>
         /// <param name="percentage"></param>
         /// <param name="timeset"></param>
-        public SoundClip(string path, double percentage, int timeset)
+        public SoundClip(string name, string path, double percentage, int timeset)
         {
             this.path = path;
             this.randomPicker = new Random();

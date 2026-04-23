@@ -10,7 +10,7 @@ namespace Project4.Core
     public class Saver
     {
         private string saveFilePath = "..\\..\\..\\..\\..\\clipData.csv";
-        private Dictionary<string, List<string>> savedClips = new Dictionary<string, List<string>>();
+        public Dictionary<string, List<string>> savedClips { get; private set; } = new Dictionary<string, List<string>>();
         /// <summary>
         /// 
         /// </summary>
