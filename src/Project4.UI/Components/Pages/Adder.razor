@@ -1,4 +1,5 @@
 ﻿@page "/Adder"
+@inject IJSRuntime JS
 @rendermode InteractiveServer
 
 <PageTitle>Sound Adder</PageTitle>
@@ -6,26 +7,64 @@
 <h1>Add Sound</h1>
 
 <div>
-    <p>
-        Percentage: 0 -> Infinity
-        Interval: sec minute hour
-        Path: /location/of/sound.mp3
-    </p>
-    <input type="text" @oninput="HandleInput"/>
-    <p>@text</p>
-    <button @onclick="Test">Add Sound</button>
+    <p>Name: </p>
+    <input type="text" @bind-value="name" />
+    <p>@name</p>
+
+    <p>Percentage: </p>
+    <input type="text" @bind-value="percentage"/>
+    <p>@percentage</p>
+
+    <p>Interval (sec, min, hour): </p>
+    <input type="text" @bind-value="interval"/>
+    <p>@interval</p>
+
+    <p>Path: </p>
+    <input type="text" @bind-value="path"/>
+    <p>@path</p>
+    <button @onclick="Save">Save</button>
+    <button @onclick="Play">Play</button>
 </div>
 
 @code {
 
-    string text = "";
+    string name = "";
+    string interval = "";
+    string percentage = "";
+    string path = "";
+    Core.ClipHandle handle = new Core.ClipHandle();
 
-    private void HandleInput(ChangeEventArgs e)
+    private async void Save()
     {
-        text = (string)e.Value!;
+        Console.WriteLine($"Name: {name}| Inter: {interval}| Percent: {percentage}| Path: {path}|"); // CONSOLE OUT
     }
-    private async void Test()
+
+    private async void Play()
     {
-        await Core.PlaySoundTest.PlaySound("C:\\Users\\nickw\\Documents\\All\\TECH\\CODING\\project - 4 - Nicholas - Watkins - Projects\\Audio\\cave21.mp3");
+        await Core.PlaySoundTest.PlaySound(path); // "C:\\Users\\nickw\\Documents\\All\\TECH\\CODING\\project-4-Nicholas-Watkins-Projects\\Audio\\cave21.mp3"
+
+        double realPercent;
+        double.TryParse(percentage, out realPercent);
+
+        int deciseconds = 100;
+
+        switch (interval)
+        {
+            case "sec":
+                deciseconds = 100;
+                break;
+            case "min":
+                deciseconds = 6000;
+                break;
+            case "hour":
+                deciseconds = 360000;
+                break;
+            default:
+                break;
+        }
+
+        Core.SoundClip clip = new Core.SoundClip(name, path, realPercent, deciseconds);
+
+        handle.RunClip(name, clip);
     }
 }

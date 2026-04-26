@@ -29,7 +29,7 @@ public static class PlaySoundTest
         // Create the audio file reader (supports MP3, WAV, etc.)
         using (var audioFile = new AudioFileReader(filePath))
         // Create the output device (WaveOutEvent is preferred for non-GUI threads)
-        using (var waveOut = new DirectSoundOut(DirectSoundOut.Devices.ToList()[2].Guid)) //  var waveOut = new WaveOutEvent()
+        using (var waveOut = new DirectSoundOut(DirectSoundOut.Devices.ToList()[2].Guid)) //  var waveOut = new WaveOutEvent() ########################## WARNING WILL NOT WORK ON OTHER DEVICES##############
         {
             // Initialize the player with the audio stream
             waveOut.Init(audioFile);
