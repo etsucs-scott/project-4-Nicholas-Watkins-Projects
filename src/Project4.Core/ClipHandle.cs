@@ -26,7 +26,7 @@ namespace Project4.Core
         /// 
         /// </summary>
         /// <param name="clipName"></param>
-        public void StopClip(string clipName)
+        public void StopClip(string clipName) // Might want to add some error detection for improper names
         {
             clips[clipName].Dispose();
             clips.Remove(clipName);

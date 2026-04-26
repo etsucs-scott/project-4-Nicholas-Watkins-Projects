@@ -1,0 +1,31 @@
+﻿@page "/Adder"
+@rendermode InteractiveServer
+
+<PageTitle>Sound Adder</PageTitle>
+
+<h1>Add Sound</h1>
+
+<div>
+    <p>
+        Percentage: 0 -> Infinity
+        Interval: sec minute hour
+        Path: /location/of/sound.mp3
+    </p>
+    <input type="text" @oninput="HandleInput"/>
+    <p>@text</p>
+    <button @onclick="Test">Add Sound</button>
+</div>
+
+@code {
+
+    string text = "";
+
+    private void HandleInput(ChangeEventArgs e)
+    {
+        text = (string)e.Value!;
+    }
+    private async void Test()
+    {
+        await Core.PlaySoundTest.PlaySound("C:\\Users\\nickw\\Documents\\All\\TECH\\CODING\\project - 4 - Nicholas - Watkins - Projects\\Audio\\cave21.mp3");
+    }
+}
