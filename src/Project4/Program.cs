@@ -6,11 +6,11 @@ Saver saves = new Saver();
 ClipHandle clipHandler = new ClipHandle();
 
 
-SoundClip testClip = new SoundClip("cave", "..\\..\\..\\..\\..\\Audio\\cave21.mp3", .005, 6000);
-SoundClip testClip2 = new SoundClip("hamburger", "..\\..\\..\\..\\..\\Audio\\hamburger-sound-effect.mp3", .15, 6000);
-SoundClip testClip3 = new SoundClip("naw", "..\\..\\..\\..\\..\\Audio\\hell-naw-dog.mp3", .020, 6000);
-SoundClip testClip4 = new SoundClip("huh", "..\\..\\..\\..\\..\\Audio\\huh-cat-meme.mp3", .005, 100);
-SoundClip testClip5 = new SoundClip("darksouls", "..\\..\\..\\..\\..\\Audio\\darksouls.mp3", .10, 6000);
+SoundClip testClip = new SoundClip("cave", "..\\..\\..\\..\\..\\Audio\\cave21.mp3", .05, 100);
+SoundClip testClip2 = new SoundClip("hamburger", "..\\..\\..\\..\\..\\Audio\\hamburger-sound-effect.mp3", .05, 100);
+SoundClip testClip3 = new SoundClip("naw", "..\\..\\..\\..\\..\\Audio\\hell-naw-dog.mp3", .05, 100);
+SoundClip testClip4 = new SoundClip("huh", "..\\..\\..\\..\\..\\Audio\\huh-cat-meme.mp3", .05, 100);
+SoundClip testClip5 = new SoundClip("darksouls", "..\\..\\..\\..\\..\\Audio\\darksouls.mp3", .05, 100);
 
 
 

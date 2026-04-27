@@ -1,21 +1,51 @@
 ﻿@page "/"
+@implements IDisposable
+@using Project4.Core
+@inject ClipHandle _handler;
+@rendermode InteractiveServer
 
 <PageTitle>Home</PageTitle>
 
 <h1>RaSound</h1>
 
 
-<div class="SoundSet">
-	<p>|| Time: |</p>
-	<p>| Times played: |</p>
-	<p>| Percent: |</p>
-	<p>| Interval: |</p>
-	<p>| Path: ||</p>
-	<button>| Pause/Play |</button>
-	<button>| X |</button>
-</div>
+@foreach (string name in _handler.clips.Keys.ToList())
+{
+	SoundClip soundClip = _handler.soundClips[name];
+	<p>@soundClip.ToString()</p>
+	<button @onclick="() => StopClip(name)">Close</button>
+}
 
 
 @code {
-	
+	private PeriodicTimer? timer;
+	private CancellationTokenSource cts = new();
+
+	protected override async Task OnInitializedAsync()
+	{
+		timer = new PeriodicTimer(TimeSpan.FromSeconds(1));
+
+		_ = Task.Run(async () =>
+		{
+			try
+			{
+				while (await timer.WaitForNextTickAsync(cts.Token))
+				{
+					await InvokeAsync(StateHasChanged);
+				}
+			}
+			catch (OperationCanceledException) { }
+		});
+	}
+
+	public void Dispose()
+	{
+		cts.Cancel();
+		timer?.Dispose();
+	}
+
+	public void StopClip(string clipName)
+	{
+		_handler.StopClip(clipName);
+	}
 }

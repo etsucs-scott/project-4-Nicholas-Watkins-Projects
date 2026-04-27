@@ -17,9 +17,9 @@ namespace Project4.Core
         public string path { get; private set; } = "";
         public string time { get; private set; } = "";
         public int timesPlayed { get; private set; } = 0;
-        private double percentage;
+        public double percentage { get; private set; }
         private double chance;
-        private int timeset; // Default time is 100 deciseconds per sec, 6.000 for min, 360.000 hour
+        public int timeset { get; private set; } // Default time is 100 deciseconds per sec, 6.000 for min, 360.000 hour
 
         /// <summary>
         /// 
@@ -40,7 +40,7 @@ namespace Project4.Core
         /// <summary>
         /// 
         /// </summary>
-        public void Start()
+        public void Start(CancellationTokenSource stopToken)
         {
             int miliSecond = 0;
             int second = 0;
@@ -50,7 +50,7 @@ namespace Project4.Core
             int totalAmount = 0;
             bool killed = false;
 
-            while (true)
+            while (!stopToken.IsCancellationRequested)
             {
                 miliSecond++;
                 Thread.SpinWait(250000); // Ensures decisecond wait time
@@ -91,6 +91,11 @@ namespace Project4.Core
                 // Update time
                 this.time = $"{hour}:{minute}:{second}:{miliSecond}";
             }
+        }
+
+        public override string ToString()
+        {
+            return $"|| {this.time} || {this.timesPlayed} || {this.percentage} || {this.timeset} || {this.path} ||";
         }
     }
 }

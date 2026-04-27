@@ -9,7 +9,9 @@ namespace Project4.Core
     /// </summary>
     public class ClipHandle
     {
-        private Dictionary<string, Task> clips = new Dictionary<string, Task>();
+        public Dictionary<string, Task> clips { get; private set; } = new Dictionary<string, Task>();
+        public Dictionary<string, SoundClip> soundClips { get; private set; } = new Dictionary<string, SoundClip>();
+        public Dictionary<string, CancellationTokenSource> tokens { get; private set; } = new Dictionary<string, CancellationTokenSource>();
         
         /// <summary>
         /// 
@@ -18,8 +20,16 @@ namespace Project4.Core
         /// <param name="soundClip"></param>
         public void RunClip(string clipName, SoundClip soundClip)
         {
-            Task clip = Task.Run(soundClip.Start);
+            var token = new CancellationTokenSource();
+            tokens[clipName] = token;
+            
+            Task clip = Task.Run(async () =>
+            {
+                soundClip.Start(token);
+            }, token.Token);
+
             clips[clipName] = clip;
+            soundClips[clipName] = soundClip;
         }
 
         /// <summary>
@@ -28,8 +38,10 @@ namespace Project4.Core
         /// <param name="clipName"></param>
         public void StopClip(string clipName) // Might want to add some error detection for improper names
         {
-            clips[clipName].Dispose(); // Does not work as originally thought...
+            var token = tokens[clipName];
+            token.Cancel();
             clips.Remove(clipName);
+            soundClips.Remove(clipName);
         }
     }
 }
