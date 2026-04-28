@@ -1,6 +1,7 @@
 ﻿using Project4.Core;
 using System.Runtime.CompilerServices;
 
+// THIS FILE IS FOR TESTING
 
 Saver saves = new Saver();
 ClipHandle clipHandler = new ClipHandle();

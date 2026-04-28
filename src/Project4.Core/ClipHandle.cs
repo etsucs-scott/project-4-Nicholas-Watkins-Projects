@@ -42,6 +42,7 @@ namespace Project4.Core
             token.Cancel();
             clips.Remove(clipName);
             soundClips.Remove(clipName);
+            tokens.Remove(clipName);
         }
     }
 }

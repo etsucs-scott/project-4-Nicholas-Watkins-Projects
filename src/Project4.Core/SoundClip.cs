@@ -48,7 +48,6 @@ namespace Project4.Core
             int hour = 0;
             int amountInSecond = 0;
             int totalAmount = 0;
-            bool killed = false;
 
             while (!stopToken.IsCancellationRequested)
             {

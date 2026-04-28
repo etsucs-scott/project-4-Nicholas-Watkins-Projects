@@ -65,3 +65,7 @@ h1:focus {
     justify-content: flex-start;
     align-items: center;
 }
+
+.Error {
+    color: red;
+}

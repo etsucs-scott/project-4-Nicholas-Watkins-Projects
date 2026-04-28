@@ -11,61 +11,118 @@
 <div>
     <p>Name: </p>
     <input type="text" @bind-value="name" />
-    <p>@name</p>
+    <p class="Error">@nameError</p>
 
     <p>Percentage: </p>
     <input type="text" @bind-value="percentage"/>
-    <p>@percentage</p>
+    <p class="Error">@percentError</p>
 
     <p>Interval (sec, min, hour): </p>
     <input type="text" @bind-value="interval"/>
-    <p>@interval</p>
+    <p class="Error">@intervalError</p>
 
     <p>Path: </p>
     <input type="text" @bind-value="path"/>
     <p>@path</p>
-    <button @onclick="Save">Save</button>
-    <button @onclick="Play">Play</button>
+    <p class="Error">@pathError</p>
+    <button @onclick="Save">Save Sound</button>
+    <button @onclick="() => Test()">Test</button>
 </div>
 
 @code {
 
     string name = "";
-    string interval = "";
     string percentage = "";
+    string interval = "";
     string path = "";
+
+    string nameError = "";
+    string percentError = "";
+    string intervalError = "";
+    string pathError = "";
 
     private async void Save()
     {
-        Console.WriteLine($"Name: {name}| Inter: {interval}| Percent: {percentage}| Path: {path}|"); // CONSOLE OUT
+        if (Test())
+        {
+            double realPercent;
+            double.TryParse(percentage, out realPercent);
+
+            int deciseconds = 100;
+
+            switch (interval)
+            {
+                case "sec":
+                    deciseconds = 100;
+                    break;
+                case "min":
+                    deciseconds = 6000;
+                    break;
+                case "hour":
+                    deciseconds = 360000;
+                    break;
+                default:
+                    break;
+            }
+
+            Core.SoundClip clip = new Core.SoundClip(name, path, realPercent, deciseconds);
+            _clipHandler.RunClip(name, clip);
+        }
     }
 
     private async void Play()
     {
-        await Core.PlaySoundTest.PlaySound(path); // "C:\\Users\\nickw\\Documents\\All\\TECH\\CODING\\project-4-Nicholas-Watkins-Projects\\Audio\\cave21.mp3"
+        await Core.PlaySoundTest.PlaySound(path);
+    }
 
-        double realPercent;
-        double.TryParse(percentage, out realPercent);
+    private bool Test() // Returns true when everything is fine
+    {
+        bool flagged = false; // flag if info is incorrect
 
-        int deciseconds = 100;
-
-        switch (interval)
+        // Check name
+        List<string> names = _clipHandler.clips.Keys.ToList();
+        if (names.Contains(name))
         {
-            case "sec":
-                deciseconds = 100;
-                break;
-            case "min":
-                deciseconds = 6000;
-                break;
-            case "hour":
-                deciseconds = 360000;
-                break;
-            default:
-                break;
+            nameError = "Duplicate name found, try another name";
+            name = "";
+            flagged = true;
+        }
+        else
+            nameError = "";
+
+        // Check percentage
+        double outPutPercent;
+        if (!double.TryParse(percentage, out outPutPercent))
+        {
+            percentError = "Incorrect type, please enter a number like 1.00 or .5";
+            percentage = "";
+            flagged = true;
+        }
+        else
+            percentError = "";
+
+        // Check interval
+        if (interval == "sec" || interval == "min" || interval == "hour") 
+            intervalError = "";
+        else
+        {
+            intervalError = "Incorrect interval, please enter either \"sec\", \"min\", or \"hour\"";
+            interval = "";
+            flagged = true;
         }
 
-        Core.SoundClip clip = new Core.SoundClip(name, path, realPercent, deciseconds);
+        // Check path
+        if (!File.Exists(path) || !(path.EndsWith(".mp3") || path.EndsWith(".wav")))
+        {
+            pathError = "Incorrect path found, please enter a valid path to mp3 or wav file";
+            path = "";
+            flagged = true;
+        }
+        else
+            pathError = "";
 
-        _clipHandler.RunClip(name, clip);
+        if (!flagged)
+            Play();
+        return !flagged;
     }
 }
