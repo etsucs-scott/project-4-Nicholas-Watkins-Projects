@@ -69,3 +69,7 @@ h1:focus {
 .Error {
     color: red;
 }
+
+.savedMessage {
+    color: green;
+}

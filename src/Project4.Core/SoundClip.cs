@@ -13,12 +13,13 @@ namespace Project4.Core
     {
         private double defaultChance = 0;
         private Random randomPicker;
-        public string name = "";
+        public string name { get; private set; } = "";
         public string path { get; private set; } = "";
         public string time { get; private set; } = "";
         public int timesPlayed { get; private set; } = 0;
         public double percentage { get; private set; }
         private double chance;
+        public string timesetType { get; private set; } = "";
         public int timeset { get; private set; } // Default time is 100 deciseconds per sec, 6.000 for min, 360.000 hour
 
         /// <summary>
@@ -29,10 +30,17 @@ namespace Project4.Core
         /// <param name="timeset"></param>
         public SoundClip(string name, string path, double percentage, int timeset)
         {
+            this.name = name;
             this.path = path;
             this.randomPicker = new Random();
             this.percentage = percentage;
             this.timeset = timeset;
+            if (timeset == 100)
+                timesetType = "sec";
+            if (timeset == 6000)
+                timesetType = "min";
+            if (timeset == 360000)
+                timesetType = "hour";
             this.chance = this.percentage / timeset;
             this.defaultChance = 1 / timeset;
         }
@@ -88,13 +96,13 @@ namespace Project4.Core
                 }
 
                 // Update time
-                this.time = $"{hour}:{minute}:{second}:{miliSecond}";
+                this.time = $"{hour}:{minute}:{second}";
             }
         }
 
         public override string ToString()
         {
-            return $"|| {this.time} || {this.timesPlayed} || {this.percentage} || {this.timeset} || {this.path} ||";
+            return $"|| {this.name} || {this.time} || {this.timesPlayed} || {this.percentage} || {this.timesetType} || {this.path} ||";
         }
     }
 }

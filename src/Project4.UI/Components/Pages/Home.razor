@@ -12,8 +12,14 @@
 @foreach (string name in _handler.clips.Keys.ToList())
 {
 	SoundClip soundClip = _handler.soundClips[name];
-	<p>@soundClip.ToString()</p>
-	<button @onclick="() => StopClip(name)">Stop</button>
+	<div style="border:5px solid black; border-radius:5px;">
+		<h3>@soundClip.name</h3> <button @onclick="() => StopClip(name)">Stop</button>
+		<p>uptime -> @soundClip.time</p>
+		<p>Times Played -> @soundClip.timesPlayed</p>
+		<p>Percent -> @soundClip.percentage</p>
+		<p>Interval -> @soundClip.timesetType</p>
+		<p>Path -> @soundClip.path</p>
+	</div>
 }
 
 
@@ -47,5 +53,10 @@
 	public void StopClip(string clipName)
 	{
 		_handler.StopClip(clipName);
+	}
+
+	public void saveFile()
+	{
+		
 	}
 }

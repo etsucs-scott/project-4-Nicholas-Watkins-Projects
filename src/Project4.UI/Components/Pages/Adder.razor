@@ -27,6 +27,7 @@
     <p class="Error">@pathError</p>
     <button @onclick="Save">Save Sound</button>
     <button @onclick="() => Test()">Test</button>
+    <p class="savedMessage">@savedMessage</p>
 </div>
 
 @code {
@@ -35,6 +36,7 @@
     string percentage = "";
     string interval = "";
     string path = "";
+    string savedMessage = "";
 
     string nameError = "";
     string percentError = "";
@@ -67,7 +69,10 @@
 
             Core.SoundClip clip = new Core.SoundClip(name, path, realPercent, deciseconds);
             _clipHandler.RunClip(name, clip);
+            savedMessage = "Saved Successfully";
         }
+        else
+            savedMessage = "";
     }
 
     private async void Play()
@@ -120,6 +125,8 @@
         }
         else
             pathError = "";
+
+        savedMessage = "";
 
         if (!flagged)
             Play();
