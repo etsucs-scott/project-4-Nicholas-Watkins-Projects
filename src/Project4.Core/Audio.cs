@@ -46,6 +46,7 @@ public static class PlaySoundTest
         }
     }
 
+    // Used to find Devices for later
     public static void Test()
     {
         foreach (var dev in DirectSoundOut.Devices)

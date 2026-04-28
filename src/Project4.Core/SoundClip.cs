@@ -7,7 +7,7 @@ using System.Threading.Channels;
 namespace Project4.Core
 {
     /// <summary>
-    /// 
+    /// A class to store information on a clip
     /// </summary>
     public class SoundClip
     {
@@ -23,11 +23,11 @@ namespace Project4.Core
         public int timeset { get; private set; } // Default time is 100 deciseconds per sec, 6.000 for min, 360.000 hour
 
         /// <summary>
-        /// 
+        /// Inits the soundclip
         /// </summary>
-        /// <param name="path"></param>
-        /// <param name="percentage"></param>
-        /// <param name="timeset"></param>
+        /// <param name="path">Path to mp3 or wav file</param>
+        /// <param name="percentage">Percent chance as a double for the clip to play</param>
+        /// <param name="timeset">The amount of miliseconds for chance range</param>
         public SoundClip(string name, string path, double percentage, int timeset)
         {
             this.name = name;
@@ -46,8 +46,9 @@ namespace Project4.Core
         }
 
         /// <summary>
-        /// 
+        /// Starts the clip as preferably as a task
         /// </summary>
+        /// <param name="stopToken">A token for stopping the task</param>
         public void Start(CancellationTokenSource stopToken)
         {
             int miliSecond = 0;
@@ -98,11 +99,6 @@ namespace Project4.Core
                 // Update time
                 this.time = $"{hour}:{minute}:{second}";
             }
-        }
-
-        public override string ToString()
-        {
-            return $"|| {this.name} || {this.time} || {this.timesPlayed} || {this.percentage} || {this.timesetType} || {this.path} ||";
         }
     }
 }

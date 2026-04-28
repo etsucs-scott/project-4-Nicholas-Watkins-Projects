@@ -43,6 +43,9 @@
     string intervalError = "";
     string pathError = "";
 
+    /// <summary>
+    /// Saves user data to _handler as a soundclip
+    /// </summary>
     private async void Save()
     {
         if (Test())
@@ -75,11 +78,18 @@
             savedMessage = "";
     }
 
+    /// <summary>
+    /// Plays the clip using NAudio
+    /// </summary>
     private async void Play()
     {
         await Core.PlaySoundTest.PlaySound(path);
     }
 
+    /// <summary>
+    /// Tests if user input is formated correctly
+    /// </summary>
+    /// <returns>True if correct, false if not</returns>
     private bool Test() // Returns true when everything is fine
     {
         bool flagged = false; // flag if info is incorrect

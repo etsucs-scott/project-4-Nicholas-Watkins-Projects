@@ -27,6 +27,9 @@
 	private PeriodicTimer? timer;
 	private CancellationTokenSource cts = new();
 
+	/// <summary>
+	/// Updates the window every second
+	/// </summary>
 	protected override async Task OnInitializedAsync()
 	{
 		timer = new PeriodicTimer(TimeSpan.FromSeconds(1));
@@ -44,19 +47,21 @@
 		});
 	}
 
+	/// <summary>
+	/// Disposes both the task and timer
+	/// </summary>
 	public void Dispose()
 	{
 		cts.Cancel();
 		timer?.Dispose();
 	}
 
+	/// <summary>
+	/// Stops the clip using the _handler
+	/// </summary>
+	/// <param name="clipName">the name of the clip to stop</param>
 	public void StopClip(string clipName)
 	{
 		_handler.StopClip(clipName);
-	}
-
-	public void saveFile()
-	{
-		
 	}
 }
