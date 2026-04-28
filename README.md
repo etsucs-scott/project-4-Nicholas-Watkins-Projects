@@ -1,5 +1,6 @@
 
-Note before running, NAudio is a dependency for this project
+## Note 
+before running, NAudio is a dependency for this project
 
 ### Building and running
 ```bash
@@ -21,6 +22,7 @@ info: Microsoft.Hosting.Lifetime[0]
       Content root path: C:\path\to\project-4-Nicholas-Watkins-Projects\src\Project4.UI
 warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]
       Failed to determine the https port for redirect.To use the app, a browser should automatically open
+```
 
 This is what the terminal should look like. First open a browser to the http://localhost:XXXX. The numbers are typically different in the X spot.
 
@@ -36,18 +38,14 @@ If percent is .5 and interval is second, then there is a 50% chance of the sound
 You can press the test button to check if all fields are correct and to test the audio
 
 If everything is correct, hit save sound and it will appear in the Sounds tab. Once in the sounds tab, it will continue to play until you hit the stop button.
-```
 
-### Using Unit tests
-```
-TO BE ADDED
-```
 
 ### Description
 
 This project uses blazor and NAudio. Blazor is used as the web UI front end and NAudio is used to handle the audio. 
-The save file is saved in clipData.csv in the main project folder.
+
 
 ### UML Diagram
 
-TO BE ADDED
+The UML Diagram is called Project4.drawio.png
+The SoundClip class is used by ClipHandle to handle many soundclips and has strong aggregation
