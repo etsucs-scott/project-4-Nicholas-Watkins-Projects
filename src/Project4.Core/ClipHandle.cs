@@ -36,7 +36,7 @@ namespace Project4.Core
         /// Stops the clip with the name 
         /// </summary>
         /// <param name="clipName">The name of clip</param>
-        public void StopClip(string clipName) // Might want to add some error detection for improper names
+        public void StopClip(string clipName) 
         {
             var token = tokens[clipName];
             token.Cancel();
