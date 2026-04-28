@@ -37,3 +37,17 @@ You can press the test button to check if all fields are correct and to test the
 
 If everything is correct, hit save sound and it will appear in the Sounds tab. Once in the sounds tab, it will continue to play until you hit the stop button.
 ```
+
+### Using Unit tests
+```
+TO BE ADDED
+```
+
+### Description
+
+This project uses blazor and NAudio. Blazor is used as the web UI front end and NAudio is used to handle the audio. 
+The save file is saved in clipData.csv in the main project folder.
+
+### UML Diagram
+
+TO BE ADDED
