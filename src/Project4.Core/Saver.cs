@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Project4.Core
+// NOT IN USE due to time restriction
+
+namespace Project4.Core // NEED TO COMMENT MORE
 {
     /// <summary>
-    /// 
+    /// Saves to file class
     /// </summary>
     public class Saver
     {
         private string saveFilePath = "..\\..\\..\\..\\..\\clipData.csv";
         public Dictionary<string, List<string>> savedClips { get; private set; } = new Dictionary<string, List<string>>();
+
         /// <summary>
-        /// 
+        /// Retrieve the data from the default saveFilePath and puts it into the savedClips dictionary
         /// </summary>
         public void RetrieveData()
         {
@@ -30,8 +33,9 @@ namespace Project4.Core
                 savedClips[clipInfo[0]] = clipInfoList;
             }
         }
+
         /// <summary>
-        /// 
+        /// Saves the data from savedclips to a file (saveFilePath)
         /// </summary>
         public void SaveData()
         {
@@ -49,19 +53,21 @@ namespace Project4.Core
                 File.AppendAllText(saveFilePath, Environment.NewLine);
             }
         }
+
         /// <summary>
-        /// 
+        /// Add saved data to the dictionary using the name of the clip and list of clip data in string
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="data"></param>
+        /// <param name="name">name of the clip</param>
+        /// <param name="data">clip data converted to string</param>
         public void AddData(string name, List<string> data)
         {
             savedClips.Add(name, data);
         }
+
         /// <summary>
-        /// 
+        /// Removes the data from teh savedClips dictionary based off the name
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">name of clip with data</param>
         public void RemoveData(string name) 
         {
             savedClips.Remove(name);

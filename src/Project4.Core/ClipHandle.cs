@@ -18,7 +18,7 @@ namespace Project4.Core
         /// </summary>
         /// <param name="clipName">The name of the clip</param>
         /// <param name="soundClip">The soundclip class object associated to the name</param>
-        public void RunClip(string clipName, SoundClip soundClip)
+        public void RunClip(string clipName, SoundClip soundClip) // task.status == task.running
         {
             var token = new CancellationTokenSource();
             tokens[clipName] = token;
@@ -36,7 +36,7 @@ namespace Project4.Core
         /// Stops the clip with the name 
         /// </summary>
         /// <param name="clipName">The name of clip</param>
-        public void StopClip(string clipName) 
+        public void StopClip(string clipName) // Check if dictionary has removed the clips from them
         {
             var token = tokens[clipName];
             token.Cancel();

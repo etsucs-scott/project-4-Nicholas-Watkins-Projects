@@ -22,7 +22,7 @@ public static class PlaySoundTest
     /// A static function to play a sound file from the filepath
     /// </summary>
     /// <param name="filePath">string path to the sound file. MP3 and WAV files</param>
-    public static void DealWithSounds(string filePath)
+    public static void DealWithSounds(string filePath) // UNIT TEST, test for passing and test for failing
     {
         // Got the following code from NAudio's website example code to play audio...
 
