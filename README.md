@@ -5,7 +5,7 @@ before running, NAudio is a dependency for this project
 ### Building and running
 ```bash
 dotnet build
-dotnet run --project ProjectName.App
+dotnet run --project src/Project4.UI
 ```
 
 ### Using the app
@@ -49,3 +49,17 @@ This project uses blazor and NAudio. Blazor is used as the web UI front end and 
 
 The UML Diagram is called Project4.drawio.png
 The SoundClip class is used by ClipHandle to handle many soundclips and has strong aggregation
+
+
+### Unit testing
+
+In the same directory as the build and run:
+
+```bash
+dotnet build
+dotnet test
+```
+
+The tests goes over the SoundClip and ClipHandle classes
+
+If all tests are succeeded then its fine!
